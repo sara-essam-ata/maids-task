@@ -1,4 +1,75 @@
 @import "/src/assets/styles/abstracts/_variables.scss";
 
+.pointer {
+  cursor: pointer;
+}
 
-  
+button {
+  transition: all 0.2s ease-in;
+  padding: 3px 20px;
+  border: none;
+  &.primary {
+    background: $secondary-color;
+    border-radius: 25px;
+  }
+  &.primary:hover {
+    color: $main-color;
+    background: #fff;
+    border: 3px solid $secondary-color;
+  }
+}
+//table
+th {
+  font-style: normal;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
+  padding: 20px;
+  background: $main-color;
+  color: #fff;
+}
+//   .dropdown-toggle::after {
+//     display: none;
+//   }
+//   .dropdown-item:hover {
+//     background-color: #3252df !important;
+//     color: #fff;
+//     cursor: pointer;
+//     i {
+//       color: #fff;
+//     }
+//   }
+
+tbody > tr {
+  transition: all 0.1s ease;
+}
+tr:hover {
+  box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0,
+    0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+  z-index: 2;
+  position: relative;
+}
+td {
+  border-bottom: 1px solid #dfe3e7;
+}
+tr > td {
+  padding: 6px 0px 6px 20px;
+}
+thead {
+  position: sticky;
+  top: 70px;
+  z-index: 500;
+}
+
+// angular material override
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background: #eaedf0 !important;
+}
+.mat-mdc-form-field-subscript-wrapper {
+  display: none !important;
+}
+.mat-mdc-paginator-container {
+  background: #eaedf0 !important;
+  text-align: center !important;
+  // width: 50% !important;
+}

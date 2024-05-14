@@ -1,1 +1,114 @@
-<p>users-list works!</p>
+<section id="users-list">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 m-auto">
+        <div class="d-flex justify-content-between align-items-center">
+          <h3 class="px-3">Users List</h3>
+          <!-- search -->
+          <input
+            class="form-control py-2 rounded-pill w-50"
+            [(ngModel)]="searchValue"
+            (keyup)="search()"
+            type="search"
+            placeholder="Search By Id"
+            aria-label="Search"
+          />
+        </div>
+        <!-- users list -->
+        <table class="w-100 mt-4">
+          <thead class="">
+            <tr>
+              <th>Id</th>
+              <th>Image</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- all users -->
+            <ng-container *ngIf="searchedUser == null || searchValue == 0">
+              <tr *ngFor="let user of usersList">
+                <td>{{ user?.id }}</td>
+                <td><img src="{{ user?.avatar }}" alt="" /></td>
+                <td>{{ user?.first_name }}</td>
+                <td>{{ user?.last_name }}</td>
+                <td>
+                  <button
+                    mat-icon-button
+                    [matMenuTriggerFor]="menu"
+                    aria-label="Example icon-button with a menu"
+                  >
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button
+                      mat-menu-item
+                      [routerLink]="['/Maids.cc/users/details/', user?.id]"
+                    >
+                      <mat-icon>visibility</mat-icon>
+                      <span>View Details</span>
+                    </button>
+                    <button mat-menu-item disabled>
+                      <mat-icon>block</mat-icon>
+                      <span>Block User</span>
+                    </button>
+                  </mat-menu>
+                </td>
+              </tr>
+            </ng-container>
+            <!-- searched user -->
+            <tr *ngIf="searchedUser != null || searchValue == null">
+              <td>{{ searchedUser?.id }}</td>
+              <td><img src="{{ searchedUser?.avatar }}" alt="" /></td>
+              <td>{{ searchedUser?.first_name }}</td>
+              <td>{{ searchedUser?.last_name }}</td>
+              <td>
+                <button
+                  mat-icon-button
+                  [matMenuTriggerFor]="menu"
+                  aria-label="Example icon-button with a menu"
+                >
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button
+                    mat-menu-item
+                    [routerLink]="[
+                      '/Maids.cc/users/details/',
+                      searchedUser?.id
+                    ]"
+                  >
+                    <mat-icon>visibility</mat-icon>
+                    <span>View Details</span>
+                  </button>
+                  <button mat-menu-item disabled>
+                    <mat-icon>block</mat-icon>
+                    <span>Block User</span>
+                  </button>
+                </mat-menu>
+              </td>
+            </tr>
+            <!-- in case no users -->
+            <p *ngIf="usersList == null">No Users found</p>
+          </tbody>
+        </table>
+        <!-- paginator -->
+        <div
+          class="mt-0 mb-3 w-50 ms-auto"
+          *ngIf="searchedUser == null || searchValue == 0"
+        >
+          <mat-paginator
+            [length]="usersTable?.total"
+            [pageSize]="usersTable?.per_page"
+            [pageSizeOptions]="[6]"
+            aria-label="Select page"
+            [pageIndex]="pageIndex"
+            (page)="handlePageEvent($event)"
+          >
+          </mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
