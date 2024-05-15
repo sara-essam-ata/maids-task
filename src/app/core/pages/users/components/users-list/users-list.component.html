@@ -62,10 +62,10 @@
               *ngIf="searchedUser != null && searchedUser?.id != undefined"
             >
               <tr>
-                <td>{{ searchedUser?.id }}</td>
-                <td><img src="{{ searchedUser?.avatar }}" alt="" /></td>
-                <td>{{ searchedUser?.first_name }}</td>
-                <td>{{ searchedUser?.last_name }}</td>
+                <td>{{ searchedUser.id }}</td>
+                <td><img src="{{ searchedUser.avatar }}" alt="" /></td>
+                <td>{{ searchedUser.first_name }}</td>
+                <td>{{ searchedUser.last_name }}</td>
                 <td>
                   <button
                     mat-icon-button
@@ -79,7 +79,7 @@
                       mat-menu-item
                       [routerLink]="[
                         '/Maids.cc/users/details/',
-                        searchedUser?.id
+                        searchedUser.id
                       ]"
                     >
                       <mat-icon>visibility</mat-icon>
@@ -100,7 +100,7 @@
         </table>
         <!-- paginator -->
         <div
-          class="mt-0 mb-3 w-50 ms-auto"
+          class="my-3 w-100 ms-auto"
           *ngIf="searchedUser == null || searchValue == 0"
         >
           <mat-paginator

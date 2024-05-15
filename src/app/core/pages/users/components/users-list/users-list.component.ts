@@ -34,11 +34,6 @@ export class UsersListComponent implements OnInit {
     this._UsersService.onGetUserById(this.searchValue).subscribe({
       next: (res) => {
         this.searchedUser = res?.data;
-        // console.log(this.searchedUser);
-        // console.log(this.searchValue);
-        // console.log(this.usersList);
-        
-        
       },
     });
   }
