@@ -1,8 +1,10 @@
+@import "./abstracts/components/header.scss";
+@import "./abstracts/components/users.scss";
 
 
 @import "./abstracts/_utilities.scss";
 @import "./abstracts/_variables.scss";
-@import "./abstracts/mixins";
+@import "./abstracts/_mixins";
 
 
 @import "./base/_typography.scss";
