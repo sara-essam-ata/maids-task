@@ -7,10 +7,10 @@
           <!-- search -->
           <input
             class="form-control py-2 rounded-pill w-50"
-            [(ngModel)]="searchValue"
-            (keyup)="search()"
+            (keyup)="searchUser()"
             type="search"
             placeholder="Search By Id"
+            [(ngModel)]="searchValue"
             aria-label="Search"
           />
         </div>
@@ -58,44 +58,49 @@
               </tr>
             </ng-container>
             <!-- searched user -->
-            <tr *ngIf="searchedUser != null || searchValue == null">
-              <td>{{ searchedUser?.id }}</td>
-              <td><img src="{{ searchedUser?.avatar }}" alt="" /></td>
-              <td>{{ searchedUser?.first_name }}</td>
-              <td>{{ searchedUser?.last_name }}</td>
-              <td>
-                <button
-                  mat-icon-button
-                  [matMenuTriggerFor]="menu"
-                  aria-label="Example icon-button with a menu"
-                >
-                  <mat-icon>more_vert</mat-icon>
-                </button>
-                <mat-menu #menu="matMenu">
+            <ng-container
+              *ngIf="searchedUser != null && searchedUser?.id != undefined"
+            >
+              <tr>
+                <td>{{ searchedUser.id }}</td>
+                <td><img src="{{ searchedUser.avatar }}" alt="" /></td>
+                <td>{{ searchedUser.first_name }}</td>
+                <td>{{ searchedUser.last_name }}</td>
+                <td>
                   <button
-                    mat-menu-item
-                    [routerLink]="[
-                      '/Maids.cc/users/details/',
-                      searchedUser?.id
-                    ]"
+                    mat-icon-button
+                    [matMenuTriggerFor]="menu"
+                    aria-label="Example icon-button with a menu"
                   >
-                    <mat-icon>visibility</mat-icon>
-                    <span>View Details</span>
+                    <mat-icon>more_vert</mat-icon>
                   </button>
-                  <button mat-menu-item disabled>
-                    <mat-icon>block</mat-icon>
-                    <span>Block User</span>
-                  </button>
-                </mat-menu>
-              </td>
-            </tr>
+                  <mat-menu #menu="matMenu">
+                    <button
+                      mat-menu-item
+                      [routerLink]="[
+                        '/Maids.cc/users/details/',
+                        searchedUser.id
+                      ]"
+                    >
+                      <mat-icon>visibility</mat-icon>
+                      <span>View Details</span>
+                    </button>
+                    <button mat-menu-item disabled>
+                      <mat-icon>block</mat-icon>
+                      <span>Block User</span>
+                    </button>
+                  </mat-menu>
+                </td>
+              </tr>
+            </ng-container>
+
             <!-- in case no users -->
             <p *ngIf="usersList == null">No Users found</p>
           </tbody>
         </table>
         <!-- paginator -->
         <div
-          class="mt-0 mb-3 w-50 ms-auto"
+          class="my-3 w-100 ms-auto"
           *ngIf="searchedUser == null || searchValue == 0"
         >
           <mat-paginator

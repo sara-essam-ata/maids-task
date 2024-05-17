@@ -1,3 +1,28 @@
-#users-list{
-    margin-top: 30px;
+@import "/src/assets/styles/abstracts/_variables.scss";
+
+#users-list {
+  margin-top: 30px;
+}
+
+#details {
+  .details {
+    border-radius: 15px;
+    background-color: $main-color;
+    p {
+      color: #fff;
+      font-size: 25px;
+      font-weight: 500;
+      span {
+        font-weight: 600;
+      }
+    }
+    img {
+      border-radius: 15px;
+      border: #fff 2px solid;
+      transition: transform 0.4s;
+    }
+    img:hover {
+      transform: scale(1.3);
+    }
+  }
 }

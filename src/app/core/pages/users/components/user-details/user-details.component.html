@@ -1,1 +1,33 @@
-<p>user-details works!</p>
+<section id="details">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-9 mt-5">
+        <h3>User Details</h3>
+        <div class="row details p-5 d-flex border">
+          <div class="col-md-7 d-flex align-items-center">
+            <div>
+              <p>
+                First Name : <span>{{ userData?.first_name }}</span>
+              </p>
+              <p>
+                Last Name : <span>{{ userData?.last_name }}</span>
+              </p>
+              <p>
+                Id : <span>{{ userData?.id }}</span>
+              </p>
+              <p>
+                Email : <span>{{ userData?.email }}</span>
+              </p>
+              <button class="primary mt-3" routerLink="/Maids.cc/users">
+                <i class="fa-solid fa-arrow-left"></i> Back
+              </button>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <img [src]="userData?.avatar" class="w-75 pointer" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
